@@ -19,7 +19,7 @@ python CeyeApiTools.py -t ”你的ceye api token” -m ”你要查询的类型
 
 例如：
 
-![image](https://github.com/)
+![image](https://github.com/Binarytree200/CeyeApiTools/blob/main/image/image.PNG)
 
 
 
