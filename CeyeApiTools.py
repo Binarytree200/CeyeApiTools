@@ -2,9 +2,9 @@
 # -*- encoding: utf-8 -*-
 '''
 @File    :   ceyeApiTools.py
-@Time    :   2021/09/02 14:09:56
+@Time    :   2022/03/07 11:02:56
 @Author  :   Binarytree200 
-@Version :   1.0
+@Version :   1.1
 @Desc    :   None
 @Github  :   https://github.com/Binarytree200/CeyeApiTools
 '''
@@ -16,14 +16,31 @@ import argparse
 
 
 
+def start():
+    print("""
 
+                          _____               ___        _   ______          __  
+                         / ___/__ __ _____   / _ | ___  (_) /_  __/__  ___  / /__
+                        / /__/ -_) // / -_) / __ |/ _ \/ /   / / / _ \/ _ \/ (_-<
+                        \___/\__/\_, /\__/ /_/ |_/ .__/_/   /_/  \___/\___/_/___/
+                                /___/           /_/                              
+                                        Author:Binarytree200
+                                Github:https://github.com/Binarytree200
+          """)
+    print ("""
+使用方法:python CeyeApiTools.py -t ”你的ceye api token” -m ”你要查询的类型 DNS or HTTP” -f ”url匹配规则”
+           
+           """)
 
 def cecy_id(url1):
-    r = requests.get(url=url1)
-    datadict = json.loads(r.text)
-    str1 = datadict['data'][0]
-    str3= str1['id']
-    return str3,str1
+    try:
+        r = requests.get(url=url1)
+        datadict = json.loads(r.text)
+        str1 = datadict['data'][0]
+        str3= str1['id']
+        return str3,str1
+    except:
+        return None,None
 
 def run_dns(str3):
     str1=str3
@@ -55,7 +72,10 @@ def main():
     data3,str123=cecy_id(url)
 
     while True:
-        data,str1=cecy_id(url)
+        while True:
+            data,str1=cecy_id(url)
+            if  data != None:
+                break
         if data3!=data:
             data3=data
             if args.mold=='dns':
@@ -72,4 +92,5 @@ def main():
             fo.close()
 
 if __name__=="__main__":
+    start()
     main()
